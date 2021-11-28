@@ -16,6 +16,7 @@ import Menu6MP3 from './menu_sair.mp3'
 import LigacaoMP3 from './ligacao.mp3'
 
 import PaymentMP3 from './ligacao.mp3'
+import OpcoesMP3 from './opcoes.mp3'
 
 
 export { LoginMP3, Desc1MP3, Desc2MP3, IntroMP3, Proj1MP3, Proj2MP3 }
@@ -33,6 +34,7 @@ let menu3Audio = new Audio(Menu3MP3)
 let menu4Audio = new Audio(Menu4MP3)
 let menu5Audio = new Audio(Menu5MP3)
 let menu6Audio = new Audio(Menu6MP3)
+let opcoesAudio = new Audio(OpcoesMP3)
 
 const Audios = {
   Signin: () =>{
