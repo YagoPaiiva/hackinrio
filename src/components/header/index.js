@@ -6,7 +6,7 @@ const PageHeader = () => {
   return(
     <SHeader>
     <NavBar>
-      <Link to="/"><img src={logo} alt="" /></Link>
+     <img src={logo} alt="" />
     </NavBar>
       
     </SHeader>

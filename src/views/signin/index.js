@@ -1,7 +1,8 @@
 import { SboxSignin, Sbutton, SContainer, FormArea } from './styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Audios from '../../audio/handler';
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 let counter = 0;
 
 const Page = () => {
@@ -9,19 +10,34 @@ const Page = () => {
   const [cpf, setCpf] = useState('')
   const [consumerUnit, setConsumerUnit] = useState('')
 
+
+  const validationLogin = () => {
+    if ( cpf === "123456" && consumerUnit === "abc123"){
+      window.location.href = "/"
+    }
+  }
+  const validationLoginFingerprint = () => {
+      window.location.href = "/"
+  }
+
+ 
+
   const callAudio = () => {
-    Audios.Signin()
+    setTimeout(() => {
+      Audios.Signin()
+    }, 1000);
     setTimeout(() => {
       counter = 0
     }, (60*10*1000));
   }
 
   document.addEventListener('click', () => {
-    if (counter === 0){
-      callAudio()
-      counter++
-    }
+    callAudio()
   })
+
+  document.dispatchEvent(new Event('click'))
+
+
 
   return (
     <SContainer>
@@ -37,9 +53,10 @@ const Page = () => {
             <label  for="cpfArea">CPF: <br/>
               <input
               alt="Digite o seu CPF"
+              onFocus={true}
               name="cpfArea" 
               type="number"
-              placeholder="Digite seu CPF"
+              placeholder="Use o CPF fictício: 123456"
               value={cpf}
               onChange={state=>setCpf(state.target.value)}
               required
@@ -49,7 +66,7 @@ const Page = () => {
             <label for="ucArea">Unidade Consumidora: <br/>
               <input 
               type="text"
-              placeholder="Digite sua Unidade Consumidora"
+              placeholder="Use a Unidade Consumidora fictícia: abc123"
               name="ucArea"
               value={consumerUnit}
               onChange={state=>setConsumerUnit(state.target.value)}
@@ -58,15 +75,17 @@ const Page = () => {
             </label>
             <label>
               
-            <Link to ="/">
               <Sbutton type="submit"
               onClick={(Events) => {
-                // Events.preventDefault()
-                console.log('Fazendo login...')
+                Events.preventDefault()
+                validationLogin()
                 }}>
                 Prosseguir
               </Sbutton>
-            </Link>
+              <button onClick={(Events) => {
+                Events.preventDefault()
+                validationLoginFingerprint()
+                }} class="fingerPrint"><FontAwesomeIcon className="FontAwesome" icon={['fas', 'fingerprint']} size="lg" /></button>
           </label>
           </div>
         </FormArea>
@@ -75,7 +94,5 @@ const Page = () => {
       </SboxSignin>
     </SContainer>
   )
-
-}
-
+              }
 export default Page

@@ -2,7 +2,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 // import your icons
-import { faLightbulb, faFileInvoice, faMapMarkerAlt, faInfoCircle, faTimesCircle, faHighlighter, faUndoAlt  } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb, faFileInvoice, faMapMarkerAlt, faInfoCircle, faTimesCircle, faHighlighter, faUndoAlt, faFingerprint  } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
     faLightbulb,
@@ -10,6 +10,7 @@ library.add(
     faMapMarkerAlt,
     faInfoCircle,
     faTimesCircle,
-    faUndoAlt
+    faUndoAlt,
+    faFingerprint
     // more icons go here
   );

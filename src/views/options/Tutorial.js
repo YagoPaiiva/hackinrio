@@ -24,7 +24,7 @@ const Page = () => {
       counter++
     }
   })
-  
+
 
   return(
     <Container>

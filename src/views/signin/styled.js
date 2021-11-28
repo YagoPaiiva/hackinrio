@@ -34,6 +34,18 @@ export const Sbox = styled.div `
   background-color: #ffc000;
   align-items: center;
 `
+export const SboxCantContinue = styled(Sbox)`
+h1{
+  font-size: 55px;
+  text-align: center;
+  color: #ff0f64;
+}
+h2{
+  font-size: 40px;
+  margin-bottom:50px;
+}
+`
+
 export const SboxYesOrNo = styled(Sbox)`
 h1{
   font-size:50px;
@@ -99,6 +111,14 @@ img{
   label{
     font-size: 25px;
     margin-top:20px;
+
+  }
+
+  label:last-child{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
   .ajustInput{
     width: 100%;
@@ -108,6 +128,15 @@ img{
     justify-content: center;
     align-items: center;
 
+  }
+  .fingerPrint{
+    /* width: 50px; */
+    height:50px;
+    font-size: 40px;
+    background-color: transparent;
+    border:0;
+    margin-left:10px;
+    cursor:pointer;
   }
 `
 

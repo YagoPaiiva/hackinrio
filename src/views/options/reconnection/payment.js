@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { Sbutton, Container} from "../../../components/buttons/styled";
 import { Link } from 'react-router-dom'
-import { SboxPayment, SboxYesOrNo} from '../../signin/styled'
+import { SboxPayment, SboxYesOrNo, SboxCantContinue} from '../../signin/styled'
 import { SboxReconection } from "../../signin/styled";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Help from '../Help'
 import Loading from './loading'
+import Audios from '../../../audio/handler'
+
+let ref = {
+  opcao: 0,
+  keyPress: false
+}
+
 
 const styleButton = {
   backgroundColor: '#ff0f64'
@@ -15,10 +22,30 @@ const Page = () => {
 
   const [ FunctionMenu, setFunctionMenu ] = useState('loading')
   const [ checkPayment, setCheckPayment ] = useState(false)
-
+  
   const Renderes = {
 
     Menu: () =>{
+
+      
+      const callAudio = () => {
+        Audios.ligacao(ref)
+        setTimeout(() => {
+          counter = 0
+        }, (60*10*1000));
+      }
+      
+      document.addEventListener("click", () => {
+        if (counter === 0){
+          callAudio()
+          counter++
+        }
+      })
+
+      setTimeout(() => {
+        document.dispatchEvent(new Event('click'))
+      }, 1000)
+
       return <>
 
         <SboxReconection>
@@ -40,6 +67,8 @@ const Page = () => {
                   (Events)=>{events.checkPayment("notPayment", Events)}}>
                   Ainda não paguei
                 </Sbutton>
+
+                <Link to="/"><Sbutton style={styleButton}>Voltar</Sbutton></Link>
               
             </form>
           </SboxReconection>
@@ -59,6 +88,7 @@ const Page = () => {
     },
 
     noIdentifytPayment: () =>{
+
     return(
         <Container>
         <SboxYesOrNo>
@@ -82,15 +112,30 @@ const Page = () => {
     notComprovant: () => {
       return(
         <Container>
-          <SboxYesOrNo>
-            <h1>Não</h1>
-          </SboxYesOrNo>
+          <SboxCantContinue>
+            <h1>Infelizmente não conseguiremos dar prosseguimento com a sua solicitação!</h1>
+            <h2>Será necessário a apresentação do comprovante de pagamento.</h2>
+            <Link to="/"><Sbutton style={styleButton}><FontAwesomeIcon className="FontAwesome" icon={['fas', 'undoalt']} size="lg" />Voltar</Sbutton></Link>
+          </SboxCantContinue>
         </Container>
       )
     },
+
     Comprovant: () => {
       return(
         <Help />
+      )
+    },
+
+    notPaymentPage: () => {
+      return(
+        <Container>
+            <SboxCantContinue>
+              <h1>Infelizmente não conseguiremos dar prosseguimento com a sua solicitação!</h1>
+              <h2>Será necessário realizar o pagamento para prosseguir com a religação.</h2>
+              <a href="/"><Sbutton style={styleButton}><FontAwesomeIcon className="FontAwesome" icon={['fas', 'undoalt']} size="lg" />Voltar</Sbutton></a>
+            </SboxCantContinue>
+          </Container>
       )
     }
   }
@@ -107,7 +152,6 @@ const Page = () => {
   const events = {
     checkPayment: (value, Events) => {
       Events.preventDefault()
-      console.log(value)
       setFunctionMenu(value)
       setCheckPayment(false)
     }
@@ -123,7 +167,7 @@ const Page = () => {
           : FunctionMenu === "today"
           ? Renderes.identifyPayment()
           : FunctionMenu === "notPayment"
-          ? Renderes.noIdentifytPayment()
+          ? Renderes.notPaymentPage()
           : FunctionMenu === "Yes"
           ? Renderes.Comprovant()
           : FunctionMenu === "No"
