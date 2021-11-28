@@ -2,13 +2,14 @@ import { Switch } from 'react-router-dom'
 import RouterHandler from './components/RouterHandler'
 
 import Home from './views/home'
-import One from './views/options/One'
-import Two from './views/options/Two'
+import Billet from './views/options/billet'
+import Payment from './views/options/reconnection/payment'
 import Three from './views/options/Three'
-import Four from './views/options/Four'
+import Tutorial from './views/options/Tutorial'
 import Five from './views/options/Five'
 import Help from './views/options/Help'
 import SingIn from './views/signin'
+import Teste from './views/Teste'
 
 export default () => {
     return <Switch>
@@ -20,20 +21,20 @@ export default () => {
             <SingIn />
         </RouterHandler>
 
-        <RouterHandler exact path="/One">
-            <One />
+        <RouterHandler exact path="/billet">
+            <Billet />
         </RouterHandler >
 
-        <RouterHandler exact path="/Two">
-            <Two />
+        <RouterHandler exact path="/payment">
+            <Payment />
         </RouterHandler>
 
         <RouterHandler exact path="/Three">
             <Three />
         </RouterHandler>
 
-        <RouterHandler exact path="/Four">
-            <Four/>
+        <RouterHandler exact path="/tutorial">
+            <Tutorial/>
         </RouterHandler>
 
         <RouterHandler exact path="/Five">
@@ -42,6 +43,10 @@ export default () => {
 
         <RouterHandler exact path="/Help">
             <Help/>
+        </RouterHandler>
+
+        <RouterHandler exact path="/teste">
+            <Teste/>
         </RouterHandler>
 
         </Switch>

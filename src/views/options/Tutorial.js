@@ -12,7 +12,7 @@ const Page = () => {
   }
 
   const callAudio = () => {
-    Audios.Help()
+    Audios.Tutorial()
     setTimeout(() => {
       counter = 0
     }, (60*10*1000));
@@ -29,8 +29,8 @@ const Page = () => {
   return(
     <Container>
       <SboxTutorial>
-        <h1>Estamos solicitando um atendente!</h1>
-        <h2>Em alguns instantes, você será atendido.</h2>
+        <h1>Tutorial de ambientação da loja</h1>
+        <h2>Bom dia, você está na ENEL Niterói. Nesta unidade, as paredes tem cores gelo e em frente a este totem, você encontrará cabines com atendentes, para o caso de os serviços oferecidos aqui no Totem não serem suficientes. </h2>
         <Link to="/"><Sbutton style={styleButton}><FontAwesomeIcon className="FontAwesome" icon={['fas', 'undo-alt']} size="lg" />Voltar</Sbutton></Link>
       </SboxTutorial>
   </Container>
