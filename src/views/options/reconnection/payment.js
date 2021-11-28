@@ -8,6 +8,7 @@ import Help from '../Help'
 import Loading from './loading'
 import Audios from '../../../audio/handler'
 
+let counter = 0;
 let ref = {
   opcao: 0,
   keyPress: false
